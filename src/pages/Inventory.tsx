@@ -1,9 +1,11 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button" // Pastikan ini ada
 import { Plus, Search, Filter, AlertTriangle, Package, TrendingUp } from "lucide-react"
+import { useNavigate } from "react-router-dom" // Pastikan ini ada
 
 const Inventory = () => {
+  const navigate = useNavigate(); // Pastikan ini ada
+
   const inventoryData = [
     { id: "PRD-001", name: "Kemeja Batik Premium", category: "Pakaian", stock: 25, minStock: 10, price: "Rp 250.000", status: "normal" },
     { id: "PRD-002", name: "Tas Kulit Asli", category: "Aksesoris", stock: 8, minStock: 15, price: "Rp 450.000", status: "low" },
@@ -16,7 +18,7 @@ const Inventory = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "normal": return "bg-green-100 text-green-800"
-      case "low": return "bg-yellow-100 text-yellow-800"  
+      case "low": return "bg-yellow-100 text-yellow-800"
       case "critical": return "bg-red-100 text-red-800"
       default: return "bg-gray-100 text-gray-800"
     }
@@ -25,7 +27,7 @@ const Inventory = () => {
   const getStatusText = (status: string) => {
     switch (status) {
       case "normal": return "Normal"
-      case "low": return "Stok Rendah"  
+      case "low": return "Stok Rendah"
       case "critical": return "Stok Kritis"
       default: return "Normal"
     }
@@ -41,8 +43,8 @@ const Inventory = () => {
           <h1 className="font-poppins font-bold text-3xl text-primary">Inventory</h1>
           <p className="text-muted-foreground font-poppins">Kelola stok dan produk Anda</p>
         </div>
-        
-        <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-poppins font-medium">
+
+        <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-poppins font-medium" onClick={() => navigate('/inventory/new')}>
           <Plus className="w-4 h-4 mr-2" />
           Tambah Produk
         </Button>
@@ -143,7 +145,7 @@ const Inventory = () => {
                 Semua produk dalam inventory Anda
               </CardDescription>
             </div>
-            
+
             <div className="flex gap-2">
               <Button variant="outline" size="sm" className="font-poppins">
                 <Search className="w-4 h-4 mr-2" />
@@ -156,7 +158,7 @@ const Inventory = () => {
             </div>
           </div>
         </CardHeader>
-        
+
         <CardContent>
           <div className="overflow-x-auto">
             <table className="w-full">

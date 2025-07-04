@@ -1,6 +1,5 @@
-
 import { useState } from "react"
-import { Home, ShoppingCart, Package, Calculator, Menu, X } from "lucide-react"
+import { Home, ShoppingCart, Package, Calculator, Settings, Menu, X } from "lucide-react" // <-- Tambahkan Settings di sini
 import { NavLink, useLocation } from "react-router-dom"
 
 import {
@@ -20,6 +19,7 @@ const navigationItems = [
   { title: "Sales", url: "/sales", icon: ShoppingCart },
   { title: "Inventory", url: "/inventory", icon: Package },
   { title: "Accounting", url: "/accounting", icon: Calculator },
+  { title: "Pengaturan", url: "/settings", icon: Settings }, // <-- Tambahkan item ini
 ]
 
 export function AppSidebar() {
@@ -36,8 +36,8 @@ export function AppSidebar() {
   const getNavClassName = (path: string) => {
     const active = isActive(path)
     return `w-full flex items-center transition-all duration-200 ${
-      active 
-        ? "bg-primary text-primary-foreground shadow-md" 
+      active
+        ? "bg-primary text-primary-foreground shadow-md"
         : "text-foreground hover:bg-accent/10 hover:text-accent"
     }`
   }
@@ -64,7 +64,7 @@ export function AppSidebar() {
           <SidebarGroupLabel className={`px-6 font-poppins font-medium text-muted-foreground ${collapsed ? "hidden" : ""}`}>
             Main Menu
           </SidebarGroupLabel>
-          
+
           <SidebarGroupContent className="px-3 mt-4">
             <SidebarMenu className="space-y-2">
               {navigationItems.map((item) => (

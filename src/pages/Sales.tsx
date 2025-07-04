@@ -1,9 +1,11 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button" // Pastikan ini ada
 import { Plus, Search, Filter, Download } from "lucide-react"
+import { useNavigate } from "react-router-dom" // Pastikan ini ada
 
 const Sales = () => {
+  const navigate = useNavigate(); // Pastikan ini ada
+
   const salesData = [
     { id: "TXN-001", date: "2025-01-04", customer: "Budi Santoso", items: 3, total: "Rp 750.000", status: "Selesai" },
     { id: "TXN-002", date: "2025-01-04", customer: "Siti Aminah", items: 1, total: "Rp 450.000", status: "Selesai" },
@@ -16,7 +18,7 @@ const Sales = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "Selesai": return "bg-green-100 text-green-800"
-      case "Pending": return "bg-yellow-100 text-yellow-800"  
+      case "Pending": return "bg-yellow-100 text-yellow-800"
       case "Dibatalkan": return "bg-red-100 text-red-800"
       default: return "bg-gray-100 text-gray-800"
     }
@@ -30,8 +32,8 @@ const Sales = () => {
           <h1 className="font-poppins font-bold text-3xl text-primary">Sales</h1>
           <p className="text-muted-foreground font-poppins">Kelola dan pantau semua transaksi penjualan</p>
         </div>
-        
-        <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-poppins font-medium">
+
+        <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-poppins font-medium" onClick={() => navigate('/sales/new')}>
           <Plus className="w-4 h-4 mr-2" />
           Transaksi Baru
         </Button>
@@ -86,7 +88,7 @@ const Sales = () => {
                 Semua transaksi penjualan terbaru
               </CardDescription>
             </div>
-            
+
             <div className="flex gap-2">
               <Button variant="outline" size="sm" className="font-poppins">
                 <Search className="w-4 h-4 mr-2" />
@@ -103,7 +105,7 @@ const Sales = () => {
             </div>
           </div>
         </CardHeader>
-        
+
         <CardContent>
           <div className="overflow-x-auto">
             <table className="w-full">

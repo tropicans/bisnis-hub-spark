@@ -1,9 +1,11 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button" // Pastikan ini ada
 import { Plus, TrendingUp, TrendingDown, DollarSign, Calendar } from "lucide-react"
+import { useNavigate } from "react-router-dom" // Pastikan ini ada
 
 const Accounting = () => {
+  const navigate = useNavigate(); // Pastikan ini ada
+
   const transactions = [
     { id: "ACC-001", date: "2025-01-04", description: "Penjualan Kemeja Batik", type: "income", amount: 250000, category: "Penjualan" },
     { id: "ACC-002", date: "2025-01-04", description: "Pembelian Bahan Baku", type: "expense", amount: -150000, category: "Pembelian" },
@@ -36,13 +38,13 @@ const Accounting = () => {
           <h1 className="font-poppins font-bold text-3xl text-primary">Accounting</h1>
           <p className="text-muted-foreground font-poppins">Pantau keuangan dan laporan bisnis Anda</p>
         </div>
-        
+
         <div className="flex gap-2">
-          <Button variant="outline" className="font-poppins font-medium">
+          <Button variant="outline" className="font-poppins font-medium" onClick={() => navigate('/accounting/reports')}>
             <Calendar className="w-4 h-4 mr-2" />
             Laporan Bulanan
           </Button>
-          <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-poppins font-medium">
+          <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-poppins font-medium" onClick={() => navigate('/accounting/new-transaction')}>
             <Plus className="w-4 h-4 mr-2" />
             Transaksi Baru
           </Button>
@@ -141,13 +143,13 @@ const Accounting = () => {
                 Catatan keuangan terkini
               </CardDescription>
             </div>
-            
+
             <Button variant="outline" size="sm" className="font-poppins">
               Lihat Semua
             </Button>
           </div>
         </CardHeader>
-        
+
         <CardContent>
           <div className="space-y-4">
             {transactions.map((transaction) => (
@@ -162,7 +164,7 @@ const Accounting = () => {
                       <TrendingDown className="w-5 h-5 text-red-600" />
                     )}
                   </div>
-                  
+
                   <div>
                     <p className="font-poppins font-medium text-sm">{transaction.description}</p>
                     <div className="flex gap-4 text-xs text-muted-foreground">
@@ -172,7 +174,7 @@ const Accounting = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="text-right">
                   <p className={`font-poppins font-semibold ${
                     transaction.type === "income" ? "text-green-600" : "text-red-600"
@@ -196,10 +198,10 @@ const Accounting = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
-            <Button className="w-full bg-green-600 hover:bg-green-700 text-white font-poppins">
+            <Button className="w-full bg-green-600 hover:bg-green-700 text-white font-poppins" onClick={() => navigate('/accounting/new-transaction?type=income')}>
               + Pemasukan dari Penjualan
             </Button>
-            <Button variant="outline" className="w-full font-poppins">
+            <Button variant="outline" className="w-full font-poppins" onClick={() => navigate('/accounting/new-transaction?type=other-income')}>
               + Pemasukan Lainnya
             </Button>
           </CardContent>
@@ -213,10 +215,10 @@ const Accounting = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
-            <Button className="w-full bg-red-600 hover:bg-red-700 text-white font-poppins">
+            <Button className="w-full bg-red-600 hover:bg-red-700 text-white font-poppins" onClick={() => navigate('/accounting/new-transaction?type=operational-expense')}>
               + Pengeluaran Operasional
             </Button>
-            <Button variant="outline" className="w-full font-poppins">
+            <Button variant="outline" className="w-full font-poppins" onClick={() => navigate('/accounting/new-transaction?type=other-expense')}>
               + Pengeluaran Lainnya
             </Button>
           </CardContent>

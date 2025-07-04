@@ -1,8 +1,11 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { TrendingUp, TrendingDown, DollarSign, Package, ShoppingCart, Users } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { useNavigate } from "react-router-dom" // Baris import baru untuk useNavigate
 
 const Dashboard = () => {
+  const navigate = useNavigate(); // Inisialisasi useNavigate
+
   const stats = [
     {
       title: "Total Penjualan",
@@ -16,7 +19,7 @@ const Dashboard = () => {
       title: "Produk Terjual",
       value: "1,234",
       change: "+8.2%",
-      trend: "up", 
+      trend: "up",
       icon: ShoppingCart,
       color: "text-blue-600"
     },
@@ -121,18 +124,18 @@ const Dashboard = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
-            <button className="w-full p-3 bg-accent hover:bg-accent/90 text-accent-foreground rounded-lg font-poppins font-medium transition-colors">
+            <Button className="w-full" onClick={() => navigate('/sales')}>
               + Tambah Penjualan
-            </button>
-            <button className="w-full p-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg font-poppins font-medium transition-colors">
+            </Button>
+            <Button className="w-full" onClick={() => navigate('/inventory')}>
               + Tambah Produk
-            </button>
-            <button className="w-full p-3 bg-warning hover:bg-warning/90 text-warning-foreground rounded-lg font-poppins font-medium transition-colors">
+            </Button>
+            <Button className="w-full" onClick={() => navigate('/accounting')}>
               📊 Lihat Laporan
-            </button>
-            <button className="w-full p-3 border border-border hover:bg-muted/30 rounded-lg font-poppins font-medium transition-colors">
+            </Button>
+            <Button variant="outline" className="w-full" onClick={() => navigate('/settings')}>
               ⚙️ Pengaturan
-            </button>
+            </Button>
           </CardContent>
         </Card>
       </div>
